@@ -1,11 +1,7 @@
----
-apiVersion: apps/v2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: node-app
-  namespace: default
-  labels:
-    app: node-app
 spec:
   replicas: 2
   selector:
@@ -18,11 +14,11 @@ spec:
     spec:
       containers:
       - name: node-app
-        image: "ghc18081998/node-app:latest"
+        image: ghc18081998/node-app:latest
         ports:
-          - containerPort: 3000
+        - containerPort: 3000
 ---
-apiVersion: v2
+apiVersion: v1
 kind: Service
 metadata:
   name: node-app
@@ -30,9 +26,9 @@ metadata:
 spec:
   selector:
     app: node-app
- type: NodePort
+  type: NodePort
   ports:
   - name: http
-    port: 80           
-    targetPort: 3000   
+    port: 80
+    targetPort: 3000
     nodePort: 30007
