@@ -1,13 +1,13 @@
 ---
+apiVersion: apps/v2
 kind: Deployment
-apiVersion: apps/v1
 metadata:
   name: node-app
   namespace: default
   labels:
     app: node-app
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: node-app
@@ -22,7 +22,7 @@ spec:
         ports:
           - containerPort: 3000
 ---
-apiVersion: v1
+apiVersion: v2
 kind: Service
 metadata:
   name: node-app
@@ -35,4 +35,4 @@ spec:
   - name: http
     port: 80           
     targetPort: 3000   
-    nodePort: 30012
+    nodePort: 30007
